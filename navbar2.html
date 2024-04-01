@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Left and Right Navbar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+          body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    height: 100%;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    padding: 20px;
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+}
+
+#left-navbar {
+    left: 0;
+    background-color: #ccc;
+}
+
+#right-navbar {
+    right: 0;
+    background-color: #ddd;
+}
+
+.content {
+    margin-left: 200px; /* Adjust this value based on your left navbar width */
+    margin-right: 200px; /* Adjust this value based on your right navbar width */
+    padding: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <div id="left-navbar" class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div id="right-navbar" class="navbar">
+        <ul>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign Up</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Welcome to My Website</h1>
+        <p>This is a demo of left and right navbars.</p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

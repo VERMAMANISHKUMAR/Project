@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Typing Speed Test</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: aliceblue;
+  }
+  .contenar{
+
+      display: flex;
+      flex-flow: column;
+      text-align: center;
+      position: relative;
+      left: 25%;
+      top: 30px;
+      width: 50%;
+      background-color: aqua;
+      border-radius: 15px;
+      box-shadow: 10px 6px 8px 2px rgba(0, 0, 0, 0.2);
+  }
+  input{
+      height: 20px;
+  }
+  button{
+      text-decoration: none;
+      border-style: none;
+      border: 1px solid rgb(1, 208, 208);
+      background-color: aqua;
+      box-shadow: 10px 6px 8px 2px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+  }
+  #typing-area {
+    margin-bottom: 20px;
+  }
+  
+  #result {
+    display: none;
+    margin-top: 20px;
+  }
+  #retry-btn{
+    margin-bottom: 10px;
+  }
+</style>
+<body>
+<section class="contenar">
+          <h1>Typing Speed Test</h1>
+    <div>     
+   <p id="sentence"></p>
+   <input type="text" id="input" disabled>
+   <button id="start-btn">Start Test</button>
+   <div id="timer"></div>
+   </div> 
+   
+  <div id="result" style="display: none;">
+          <div><h1>Result Test</h1></div>
+    <p>Speed: <span id="speed"></span> words per minute</p>
+    <p>Accuracy: <span id="accuracy"></span>%</p>
+    <button id="retry-btn">Retry Test</button>
+  </div>
+</section>
+
+  <script>
+    const sentences = 
+      `The quick brown fox jumps over the lazy dog.
+      Sphinx of black quartz, judge my vow.
+      Pack my box with five dozen liquor jugs.
+      How vexingly quick daft zebras jump!`;
+
+    let timerInterval;
+    let startTime;
+    let endTime;
+    let totalWords = 0;
+    let correctWords = 0;
+    let totalCharacters = 0;
+    let correctCharacters = 0;
+
+    const sentenceElement = document.getElementById('sentence');
+    const inputElement = document.getElementById('input');
+    const startButton = document.getElementById('start-btn');
+    const timerElement = document.getElementById('timer');
+    const resultDiv = document.getElementById('result');
+    const retryButton = document.getElementById('retry-btn');
+    const speedSpan = document.getElementById('speed');
+    const accuracySpan = document.getElementById('accuracy');
+
+    startButton.addEventListener('click', startTest);
+    retryButton.addEventListener('click', retakeTest);
+
+    function startTest() {
+      inputElement.disabled = false;
+      sentenceElement.textContent = sentences;
+      startButton.disabled = true;
+
+      timerInterval = setInterval(updateTimer, 1000);
+      startTime = new Date();
+    }
+
+    function updateTimer() {
+      const currentTime = new Date();
+      const elapsedTime = (currentTime - startTime) / 1000;
+      const remainingTime = 30 - elapsedTime;
+
+      if (remainingTime <= 0) {
+        clearInterval(timerInterval);
+        showResults();
+      } else {
+        timerElement.textContent = `Time remaining: ${Math.ceil(remainingTime)} seconds`;
+      }
+    }
+
+    function showResults() {
+      inputElement.disabled = true;
+      startButton.disabled = true;
+      resultDiv.style.display = 'block';
+
+      endTime = new Date();
+      const elapsedTimeInSeconds = (endTime - startTime) / 1000;
+
+      const wordsArray = sentences.split(' ');
+      totalWords = wordsArray.length;
+
+      const inputText = inputElement.value.trim();
+      const inputWords = inputText.split(' ');
+
+      inputWords.forEach((word, index) => {
+        if (word === wordsArray[index]) {
+          correctWords++;
+        }
+      });
+
+      totalCharacters = sentences.replace(/ /g, '').length;
+      correctCharacters = inputText.replace(/ /g, '').length;
+
+      const speed = Math.round((correctWords / elapsedTimeInSeconds) * 60);
+      const accuracy = Math.round((correctCharacters / totalCharacters) * 100);
+
+      speedSpan.textContent = speed;
+      accuracySpan.textContent = accuracy;
+    }
+
+    function retakeTest() {
+      inputElement.disabled = false;
+      startButton.disabled = false;
+      resultDiv.style.display = 'none';
+      timerElement.textContent = '';
+      inputElement.value = '';
+    }
+  </script>
+</body>
+</html>

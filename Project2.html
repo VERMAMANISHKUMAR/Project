@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Social Media Page</title>
+  <style>
+    .container {
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  color: white;
+  
+  background-color: #272727;
+}
+body{
+  
+  background-color: #121212;
+}
+.posts-container {
+  flex: 2;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar{
+  background-color: #fef8f8;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f8f1f1;
+  font-style: oblique;
+}
+
+#posts {
+  margin-top: 20px;
+}
+
+.post {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #121212;
+  color: white;
+}
+
+.post h3 {
+  font-size: 18px;
+   color: white;
+   text-align: center;
+}
+
+.post p {
+  margin-left: 20px;
+  font-size: 20px;
+  color: white;
+}
+
+.post img {
+  margin-left: 20px;
+  margin-right: 20px;
+  height: auto;
+  margin-bottom: 10px;
+  width: 500px;
+}
+.post button{
+  margin-left: 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 15px;
+}
+.post button:hover{
+  background-color:#a7a7a7;
+ 
+  
+}
+
+
+.post-footer {
+  margin-left: 20px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #888;
+}
+
+.comments-container {
+  margin-top: 10px;
+  color: #666;
+}
+
+.comments-container p {
+  margin-left: 20px;
+}
+#posts{
+          text-align: center;
+}
+
+  </style>
+</head>
+<body>
+  <div id="posts">
+          <h1>Photogram</h1>
+    <div class="post">
+          
+      <h3 id="author"></h3>
+      <img id="post-image">
+      <p id="post-content"></p>
+      <button id="like-button">Like</button>
+      <input type="text" id="comment-input">
+      <button id="comment-button">Comment</button>
+      <div class="post-footer" id="post-footer"></div>
+      <div class="comments-container" id="comments-container"></div>
+    </div>
+  </div>
+
+  <script>
+    let post1 = {
+      id: 1,
+      author: 'John',
+      content: 'My first Post!',
+      likes: 10,
+      comments: ['Great post!', 'Nice photo!'],
+      image: 'https://files.codingninjas.in/image2-28694.jpg'
+    };
+
+    const postContainer = document.querySelector('.post');
+    const authorElement = document.getElementById('author');
+    const imageElement = document.getElementById('post-image');
+    const contentElement = document.getElementById('post-content');
+    const likeButton = document.getElementById('like-button');
+    const commentInput = document.getElementById('comment-input');
+    const commentButton = document.getElementById('comment-button');
+    const postFooter = document.getElementById('post-footer');
+    const commentsContainer = document.getElementById('comments-container');
+
+    // Setting up post content
+    authorElement.textContent = post1.author;
+    imageElement.src = post1.image;
+    contentElement.textContent = post1.content;
+    postFooter.textContent = `Likes: ${post1.likes} Comments: ${post1.comments.length}`;
+
+    // Adding event listener to toggle comments visibility
+    postFooter.addEventListener('click', function () {
+      if (commentsContainer.style.display === 'none') {
+        commentsContainer.style.display = 'block';
+      } else {
+        commentsContainer.style.display = 'none';
+      }
+    });
+
+    // Displaying comments
+    post1.comments.forEach(comment => {
+      const commentElement = document.createElement('p');
+      commentElement.textContent = comment;
+      commentsContainer.appendChild(commentElement);
+    });
+
+    // Event listener for like button
+    likeButton.addEventListener('click', function () {
+      post1.likes++;
+      postFooter.textContent = `Likes: ${post1.likes} Comments: ${post1.comments.length}`;
+    });
+
+    // Event listener for comment button
+    commentButton.addEventListener('click', function () {
+      const newComment = commentInput.value.trim();
+      if (newComment !== '') {
+        post1.comments.push(newComment);
+        const newCommentElement = document.createElement('p');
+        newCommentElement.textContent = newComment;
+        commentsContainer.appendChild(newCommentElement);
+        postFooter.textContent = `Likes: ${post1.likes} Comments: ${post1.comments.length}`;
+        commentInput.value = ''; // Clearing the input field
+      }
+    });
+  </script>
+</body>
+</html>

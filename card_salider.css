@@ -1,0 +1,127 @@
+* {
+          margin: 0;
+          padding: 0;
+        
+          font-family: sans-serif;
+        }
+     /* renponshiv */
+         body{
+          height: 100%;
+}
+/* header */
+.navbar{
+         padding: 20px 5%; 
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         position:sticky;
+         z-index: 999;
+         background-color: white;
+         box-shadow: 0  0  14px rgb(0 , 0, 0 , 0.3 ) ;
+}
+
+     
+       
+
+.menu{
+          display: flex;
+          justify-content: space-between;
+          text-align: center;
+}
+
+h1{
+color: blue;
+border-bottom: 4px solid #fd6561
+
+}
+  li{
+          list-style: none;
+          display: inline-block;
+
+}
+a{
+          display: block;
+         
+          color: aqua;
+          border-bottom: 4px solid transparent;
+          text-decoration: none;
+          font-size: 20px;
+          font-weight: bold;
+          align-items: center;
+          margin-right: 50px;
+         
+}
+.active{
+          border-bottom: 4px solid  #fd6561;
+}
+
+.menu-btn i{
+          margin-left: 10px;
+          justify-content: space-between;
+          color: rgb(51, 248, 21); 
+          font-size: 23px;
+}
+.manish{
+          border: 5px solid red;
+          width: 200px;
+          height: 35px;
+          border-radius: 20px ;
+        
+          
+
+          
+}
+input{
+          margin: 8px;
+         border: transparent;
+        
+     
+
+}
+
+
+
+        /* Basic reset */
+     
+        .card-slider {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+          text-align: center;
+        }
+        
+        .card {
+          width: 300px; /* Adjust card width as needed */
+          flex: 0 0 auto; /* Prevent cards from stretching */
+          margin-right: 20px; /* Adjust space between cards */
+          scroll-snap-align: start;
+          border: 1px solid #ccc;
+        }
+        
+        .card img {
+          width: 100%;
+          height: auto;
+        }
+        
+        .card-content {
+          padding: 20px;
+        }
+        
+        .card-content h3 {
+          margin-bottom: 10px;
+        }
+        
+        .card-content p {
+          font-size: 14px;
+        }
+        
+        /* Optional: Hide horizontal scrollbar */
+        ::-webkit-scrollbar {
+          display: none;
+        }
+        .main-contenar{
+                  margin-left: 80px;
+                  margin-top: 10px;
+        }
+       
